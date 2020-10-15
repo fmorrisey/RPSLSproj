@@ -13,7 +13,7 @@ namespace RPSLS
 
         public Human() : base()
         {
-
+            Console.WriteLine("Human Loaded");
         }
 
         public override void Gesture()

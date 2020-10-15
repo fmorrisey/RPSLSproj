@@ -13,7 +13,7 @@ namespace RPSLS
 
         public Computer() : base()
         {
-                
+            Console.WriteLine("Computer Loaded");
         }
 
         public override void Gesture()

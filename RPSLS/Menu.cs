@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -43,21 +44,44 @@ namespace RPSLS
         public int MainMenu()
         {
             int MainMenuSelection;
-            Console.WriteLine();
-            MainMenuSelection = int.TryParse(Console.ReadLine());
+            bool askAgain;
+            Clear();
+
+            Console.WriteLine("##### MAIN MENU #### \n" +
+                              "    1: Play Game \n" +
+                              "    2: Display the Rules \n" +
+                              "    3: Exit The Game \n");
+            do
+            {
+                
+                Console.Write("Enter a menu option: ");
+                if (int.TryParse(Console.ReadLine(), out MainMenuSelection))
+                { return MainMenuSelection; }
+                else 
+                {
+                    Console.WriteLine("Incorrect Input");
+                    askAgain = true;
+                }
+            } while (askAgain == true);
+
             return MainMenuSelection;
         }
 
         public void DisplayeRules()
         {
-            Console.Write(" //Rock crushes Scissors \n" +
-                            "Scissors cuts Paper\n" +
-                            "Paper covers Rock\n" +
-                            "Rock crushes Lizard\n" +
-                            "Lizard poisons Spock\n" +
-                            "Spock smashes Scissors\n" +
-                            "Scissors decapitates Lizard");
-            Pause("Exit", 100);
+            Clear();
+            Console.WriteLine("THESE ARE THE RULES PASSED DOWN BY GENERATIONS \n" +
+                              "by the Cooper Clan. Remember them and share. ");
+            MenuDecorators("star");
+            Console.Write("Rock crushes Scissors \n" +
+                          "Scissors cuts Paper\n" +
+                          "Paper covers Rock\n" +
+                          "Rock crushes Lizard\n" +
+                          "Lizard poisons Spock\n" +
+                          "Spock smashes Scissors\n" +
+                          "Scissors decapitates Lizard \n");
+            MenuDecorators("star");
+            Pause("---Press Enter to Exit---", 100);
         }
 
         public bool PlayAgain(bool newGame)
@@ -102,6 +126,16 @@ namespace RPSLS
                 default: Console.WriteLine("/In/Valid//Menu//Decorator/"); break;
 
             }
+        }
+
+        public void Exit()
+        {
+            Clear();
+            Console.WriteLine("Created by: Forrest Morrisey // Oct 2020");
+            Console.WriteLine("Thanks For Playing!!!");
+            Console.WriteLine("Winners Don't Do Drugs");
+            Console.WriteLine("FBI ANTI-PIRACY WARNING");
+            Pause("", 1000);
         }
 
         public void Pause(string message, int waitTime)

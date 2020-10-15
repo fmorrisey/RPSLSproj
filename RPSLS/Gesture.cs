@@ -16,24 +16,20 @@ namespace RPSLS
     //Scissors decapitates Lizard
 
 
-    public class Gestures
+    public class Gesture
     {
         //Member Variables
-        List<Gestures> GesturesOptions;
-
-        public Gestures()
+        public string gesture;
+        
+        public Gesture(string gesture)
         {
-            GesturesOptions = new List<Gestures>();
+            this.gesture = gesture;
         }
 
         public void LoadGestures()
         {
             
-            GesturesOptions.Add(rock);
-            GesturesOptions.Add(scissors);
-            GesturesOptions.Add(paper);
-            GesturesOptions.Add(lizard);
-            GesturesOptions.Add(mrspock);
+            
         }
     }
 }
