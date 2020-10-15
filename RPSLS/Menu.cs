@@ -25,14 +25,17 @@ namespace RPSLS
         {
             //Welcomes the player to the game
 
-            Console.WriteLine("    THE DINOSAURS ARE ATTACKING!!!");
-            Thread.Sleep(800);
-           
+            BlinkerSingle("################################################### \n" +
+                         "### WELCOME TO ROCK-PAPER-SCISSORS-LIZARD-SPOCK ### \n" +
+                         "################################################### \n", 4, 300);
+
             Console.WriteLine("################################################### \n" +
-                              "### WELCOME TO ROCK-PAPER-SCISSORS-LIZARD-SPOCK ### \n" +
-                              "################################################### \n");
+                            "### WELCOME TO ROCK-PAPER-SCISSORS-LIZARD-SPOCK ### \n" +
+                            "################################################### \n");
+            Console.WriteLine("      THE SEQUEAL TO THE SCHOOL YARD CLASSIC          ");
+            Console.WriteLine("               -dlc sold seperatly-               \n");
             Thread.Sleep(800);
-            Console.Write("--Press ENTER to START a New Game!!!--");
+            Console.WriteLine("      --Press ENTER to START a New Game!!!--");
             Thread.Sleep(800);
             Console.ReadLine();
         }
@@ -41,7 +44,7 @@ namespace RPSLS
         {
             newGame = false;
             Clear();
-            Blinker("Play Again???", 3, 300);
+            BlinkerTrip("Play Again???", 3, 300);
             Console.WriteLine("enter y/n");
             
             
@@ -67,7 +70,7 @@ namespace RPSLS
             Clear();
             Console.WriteLine("HERE ARE THE TWO TEAMS!!!");
             Console.WriteLine("Wish them luck!");
-            Pause("Press ENTER to start the battle");
+            Pause("Press ENTER to start the battle", 800);
             
         }
 
@@ -176,15 +179,15 @@ namespace RPSLS
             }
         }
         
-        public void Pause(string message)
+        public void Pause(string message, int waitTime)
         {
             //Basically a CR with text output so the user knows what it's asking for
             Console.WriteLine(message);
-            Thread.Sleep(800);// Waits for player to read team info
+            Thread.Sleep(waitTime);// Waits for player to read team info
             Console.ReadLine();
         }
         
-        public void Blinker(string text, int blinkNum, int milliseconds)
+        public void BlinkerTrip(string text, int blinkNum, int milliseconds)
         {
             //COPIED AND MODIFIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
             //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
@@ -193,6 +196,22 @@ namespace RPSLS
             for (int i = 0; i < blinkNum; i++)
             {
                 string alert = visible ? ($"{text} {text} {text}") : "";
+                visible = !visible;
+                Console.Clear();
+                Console.Write("{0}\n", alert);
+                Thread.Sleep(milliseconds);
+            }
+        }
+        
+        public void BlinkerSingle(string text, int blinkNum, int milliseconds)
+        {
+            //COPIED AND MODIFIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
+            //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
+
+            bool visible = true;
+            for (int i = 0; i < blinkNum; i++)
+            {
+                string alert = visible ? ($"{text}") : "";
                 visible = !visible;
                 Console.Clear();
                 Console.Write("{0}\n", alert);
