@@ -11,7 +11,7 @@ namespace RPSLS
         //Member Variables
         Random rand; //to randomized choices
 
-        public Computer()
+        public Computer() : base()
         {
                 
         }

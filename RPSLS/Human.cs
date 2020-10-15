@@ -11,7 +11,7 @@ namespace RPSLS
         //Member Variables
         
 
-        public Human()
+        public Human() : base()
         {
 
         }

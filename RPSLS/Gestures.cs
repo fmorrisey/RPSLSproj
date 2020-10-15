@@ -16,7 +16,7 @@ namespace RPSLS
     //Scissors decapitates Lizard
 
 
-    public abstract class Gestures
+    public class Gestures
     {
         //Member Variables
         List<Gestures> GesturesOptions;
@@ -28,12 +28,7 @@ namespace RPSLS
 
         public void LoadGestures()
         {
-            Rock rock = new Rock();
-            Scissors scissors = new Scissors();
-            Paper paper = new Paper();
-            Lizard lizard = new Lizard();
-            Spock mrspock = new Spock();
-
+            
             GesturesOptions.Add(rock);
             GesturesOptions.Add(scissors);
             GesturesOptions.Add(paper);

@@ -40,6 +40,14 @@ namespace RPSLS
             Console.ReadLine();
         }
         
+        public int MainMenu()
+        {
+            int MainMenuSelection;
+            Console.WriteLine();
+            MainMenuSelection = int.TryParse(Console.ReadLine());
+            return MainMenuSelection;
+        }
+
         public void DisplayeRules()
         {
             Console.Write(" //Rock crushes Scissors \n" +
@@ -77,13 +85,69 @@ namespace RPSLS
             return newGame;
         }
 
-        public void TeamInit()
+        public void MenuDecorators(string Decoration)
+        { // call using the options to decorate the menues!
+            string parameterconvert = Decoration.ToLower();
+            switch (parameterconvert)
+            {
+                case "star": Console.WriteLine("***************"); break;
+                case "dash": Console.WriteLine("---------------"); break;
+                case "plus": Console.WriteLine("+++++++++++++++"); break;
+                case "equal": Console.WriteLine("==============="); break;
+                case "slashrt": Console.WriteLine("///////////////"); break;
+                case "slashlf": Console.WriteLine("\\\\\\\\\\\\\\\\"); break;
+                case "pipe": Console.WriteLine("|||||||||||||||||||"); break;
+                case "hash": Console.WriteLine("###################"); break;
+                case "div": Console.Write(" || "); break;
+                default: Console.WriteLine("/In/Valid//Menu//Decorator/"); break;
+
+            }
+        }
+
+        public void Pause(string message, int waitTime)
         {
-            Clear();
-            Console.WriteLine("HERE ARE THE TWO TEAMS!!!");
-            Console.WriteLine("Wish them luck!");
-            Pause("Press ENTER to start the battle", 800);
-            
+            //Basically a CR with text output so the user knows what it's asking for
+            Console.WriteLine(message);
+            Thread.Sleep(waitTime);// Waits for player to read team info
+            Console.ReadLine();
+        }
+
+        public void BlinkerTrip(string text, int blinkNum, int milliseconds)
+        {
+            //COPIED AND MODIFIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
+            //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
+
+            bool visible = true;
+            for (int i = 0; i < blinkNum; i++)
+            {
+                string alert = visible ? ($"{text} {text} {text}") : "";
+                visible = !visible;
+                Console.Clear();
+                Console.Write("{0}\n", alert);
+                Thread.Sleep(milliseconds);
+            }
+        }
+
+        public void BlinkerSingle(string text, int blinkNum, int milliseconds)
+        {
+            //COPIED AND MODIFIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
+            //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
+
+            bool visible = true;
+            for (int i = 0; i < blinkNum; i++)
+            {
+                string alert = visible ? ($"{text}") : "";
+                visible = !visible;
+                Console.Clear();
+                Console.Write("{0}\n", alert);
+                Thread.Sleep(milliseconds);
+            }
+        }
+
+        public void Clear()
+        {
+            //Clears the menu
+            Console.Clear();
         }
 
         //HERE LIES THAR LEGACY CODE RRRR....
@@ -172,71 +236,8 @@ namespace RPSLS
         }*/
 
         //Update for RPSLS???
-        public void MenuDecorators(string Decoration)
-        { // call using the options to decorate the menues!
-            string parameterconvert = Decoration.ToLower();
-            switch (parameterconvert)
-            {
-                case "star": Console.WriteLine("***************");break;
-                case "dash": Console.WriteLine("---------------");break;
-                case "plus": Console.WriteLine("+++++++++++++++"); break;
-                case "equal": Console.WriteLine("==============="); break;
-                case "slashrt": Console.WriteLine("///////////////"); break;
-                case "slashlf": Console.WriteLine("\\\\\\\\\\\\\\\\"); break;
-                case "pipe": Console.WriteLine("|||||||||||||||||||"); break;
-                case "hash": Console.WriteLine("###################"); break;
-                case "div": Console.Write(" || "); break;
-                default: Console.WriteLine("/In/Valid//Menu//Decorator/"); break;
 
-            }
-        }
-        
-        public void Pause(string message, int waitTime)
-        {
-            //Basically a CR with text output so the user knows what it's asking for
-            Console.WriteLine(message);
-            Thread.Sleep(waitTime);// Waits for player to read team info
-            Console.ReadLine();
-        }
-        
-        public void BlinkerTrip(string text, int blinkNum, int milliseconds)
-        {
-            //COPIED AND MODIFIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
-            //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
 
-            bool visible = true;
-            for (int i = 0; i < blinkNum; i++)
-            {
-                string alert = visible ? ($"{text} {text} {text}") : "";
-                visible = !visible;
-                Console.Clear();
-                Console.Write("{0}\n", alert);
-                Thread.Sleep(milliseconds);
-            }
-        }
-        
-        public void BlinkerSingle(string text, int blinkNum, int milliseconds)
-        {
-            //COPIED AND MODIFIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
-            //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
 
-            bool visible = true;
-            for (int i = 0; i < blinkNum; i++)
-            {
-                string alert = visible ? ($"{text}") : "";
-                visible = !visible;
-                Console.Clear();
-                Console.Write("{0}\n", alert);
-                Thread.Sleep(milliseconds);
-            }
-        }
-        
-        public void Clear()
-        {
-            //Clears the menu
-            Console.Clear();
-        }
-
-        
     }
 }
