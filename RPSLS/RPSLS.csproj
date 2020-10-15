@@ -43,22 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Paper.cs" />
-    <Compile Include="PvAI_TT.cs" />
-    <Compile Include="PvP_TT.cs" />
-    <Compile Include="Rock.cs" />
-    <Compile Include="Scissors.cs" />
-    <Compile Include="Spock.cs" />
     <Compile Include="Computer.cs" />
     <Compile Include="Gestures.cs" />
     <Compile Include="Human.cs" />
-    <Compile Include="Lizard.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameSpace.cs" />
-    <Compile Include="TurnTaker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

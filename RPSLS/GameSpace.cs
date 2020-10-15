@@ -58,6 +58,17 @@ namespace RPSLS
 
         }
 
+        public void PlayerSetUp()
+        {
+            switch (userChoice)
+            {
+                case "":/*Create PvP*/; break;
+                case "":/*Create AIvAI*/; break;
+                case "":/*Create AIvAI*/; break;
+                default:
+                    break;
+            }
+        }
 
     }
 }

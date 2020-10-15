@@ -39,6 +39,18 @@ namespace RPSLS
             Thread.Sleep(800);
             Console.ReadLine();
         }
+        
+        public void DisplayeRules()
+        {
+            Console.Write(" //Rock crushes Scissors \n" +
+                            "Scissors cuts Paper\n" +
+                            "Paper covers Rock\n" +
+                            "Rock crushes Lizard\n" +
+                            "Lizard poisons Spock\n" +
+                            "Spock smashes Scissors\n" +
+                            "Scissors decapitates Lizard");
+            Pause("Exit", 100);
+        }
 
         public bool PlayAgain(bool newGame)
         {
