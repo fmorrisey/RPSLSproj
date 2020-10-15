@@ -10,8 +10,16 @@ namespace RPSLS
     {
         static void Main(string[] args)
         {
-            ThrowSpace throwSpace = new ThrowSpace();
-            throwSpace.RunGame();
+            //conditonals for new game
+            //add loop here later 
+
+            //Thu Oct 15 (Basic Run Game)
+            GameSpace game = new GameSpace();
+            game.StartGame();
+            game.MainMenu();
+            game.ThrowSpace();
+            game.Exitgame();
+
         }
     }
 }

@@ -11,6 +11,10 @@ namespace RPSLS
         //Member Variables
 
         //CTOR??
+        public Player()
+        {
+
+        }
 
         public virtual void Gesture()
         {   //Run Logic here?

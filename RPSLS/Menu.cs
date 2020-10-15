@@ -33,7 +33,7 @@ namespace RPSLS
                             "### WELCOME TO ROCK-PAPER-SCISSORS-LIZARD-SPOCK ### \n" +
                             "################################################### \n");
             Console.WriteLine("      THE SEQUEAL TO THE SCHOOL YARD CLASSIC          ");
-            Console.WriteLine("               -dlc sold seperatly-               \n");
+            Console.WriteLine("               -DLC sold separately-               \n");
             Thread.Sleep(800);
             Console.WriteLine("      --Press ENTER to START a New Game!!!--");
             Thread.Sleep(800);
