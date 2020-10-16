@@ -20,11 +20,12 @@ namespace RPSLS
     {
         //Member Variables
         public string Type;
+        public int Value;
         
-        public GestureType(string type)
+        public GestureType(string type, int value)
         {
             this.Type = type;       //Name ex Lizard
-            
+            this.Value = value;       //Name ex Lizard
         }
 
         

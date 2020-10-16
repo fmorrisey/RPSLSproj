@@ -12,15 +12,11 @@ namespace RPSLS
         Random Random; //to randomized choices
         public GestureType gesture;
 
-
-
-
         public Computer(string name, int score) : base(score)
         {
             this.Name = name;
             this.Score = score;
             
-            score = 0;
         }
 
         public override GestureType ChooseGesture(Player player)

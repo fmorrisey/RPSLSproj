@@ -18,14 +18,17 @@ namespace RPSLS
             this.Score = score;
             
             
+            
         }
 
         public override GestureType ChooseGesture(Player player)
         {   //inherits gesture
             //base.ChooseGesture(player);
             
-            //User chosen logic
             int playerChoice = 0;
+            
+            //User chosen logic
+
             //Menu.PlayerSelection(player);
             Menu.Clear();
             Console.WriteLine($"It's {player.Name} TURN!");
@@ -42,6 +45,8 @@ namespace RPSLS
                 default:
                     { Console.WriteLine("Please choose from the list"); break; }
             }
+
+            
             Menu.MenuDecorators("slashrt");
 
             return gesture;

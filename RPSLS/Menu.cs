@@ -102,19 +102,20 @@ namespace RPSLS
             //Later iterations will use one method call
             do
             {
-
-                if (int.TryParse(Console.ReadLine(), out GestureSelection))
-                { return GestureSelection; }
-                else
-                {
-                    Console.WriteLine("Incorrect Input");
-                    askAgain = true;
-                }
+                if (int.TryParse(Console.ReadLine(), out GestureSelection)) // If Integer 
+                    if (GestureSelection >= 1 && GestureSelection <= 5)     // And Between Range
+                    { return GestureSelection; }                            // Return Selection                               
+                    else { Console.WriteLine("Incorrect Input"); askAgain = true; }
+                else { Console.WriteLine("Incorrect Input"); askAgain = true; }
             } while (askAgain == true);
 
             return GestureSelection;
         }
 
+        public void RoundDisplay(int rounds)
+        {                      
+            Console.WriteLine($"##### ROUND  {rounds} ####");
+        }
 
         public void ComputerChoice()
         {   //DRAWS AI SPECIFIC MENU
