@@ -18,11 +18,7 @@ namespace RPSLS
         //public Player player01;
         //public Player player02;
 
-        public int roundCounter = 1;
-        public int maxScore = 1; //Best of three %5 best of 5
-        public int userRounds = 3;
-        public int roundWinner;
-        public int gameWinner;
+        
 
         GestureType player01Gesture;
         GestureType player02Gesture;
@@ -150,57 +146,59 @@ namespace RPSLS
         }
 
         public void RunGame()
-        {
-         
+        {   
+            int roundCounter = 1;               
+            int maxScore = 1;                   //Best of three
+            int userRounds = 3;
+            int roundWinner;
+            bool gameWinner = true;
+
             do
             {
 
-                player01Gesture = Players[0].ChooseGesture(Players[0]);
-                Console.WriteLine($"{Players[0].Name} choose {player01Gesture.Type}");
-                Menu.WaitForKey($"Press ENTER for {Players[1].Name} turn", 500);
+                player01Gesture = Players[0].ChooseGesture(Players[0]);                 //Player 1 chooses gesture
+                Console.WriteLine($"{Players[0].Name} choose {player01Gesture.Type}");  //Tells player the move
+                Menu.WaitForKey($"Press ENTER for {Players[1].Name} turn", 500);        //Waits
                 
-                player02Gesture = Players[1].ChooseGesture(Players[1]);
-                Console.WriteLine($"{Players[1].Name} choose {player02Gesture.Type}");
+                player02Gesture = Players[1].ChooseGesture(Players[1]);                 //Player 2 chooses gesture
+                Console.WriteLine($"{Players[1].Name} choose {player02Gesture.Type}");  //tells player the move
                 
-                Menu.MenuDecorators("starlng");
+                Menu.MenuDecorators("starlng");                                         //Here we draw the results
                 roundWinner = CompareGesture();
                 Console.WriteLine($"{Players[0].Name} choose {player01Gesture.Type} \n" +
                                   $"{Players[1].Name} choose {player02Gesture.Type}");
-
-                //Menu.WaitForKey($"WINNER VALUE: {winner}", 1000);
                 Menu.MenuDecorators("starlng");
                 
-                if (roundWinner == 0)
-                {
-                    Players[0].Score += 1;
-                    Console.WriteLine($"{ Players[0].Name} WINS! " +
-                                      $"Score: { Players[0].Score}");
-                    if (Players[0].Score <= maxScore) { gameWinner = 0; }                   
-                   
+                if (roundWinner == 0)                                                   //Determine Round winner
+                {   // 0 == P1 Win // 1 == P2 Win // 2 else == Tie
+                    Players[0].Score += 1;                                              //Increment Player1 Score
+                    Console.WriteLine($"{ Players[0].Name} WINS! Score: { Players[0].Score}"); //Announce round winner
                 }
                 else if (roundWinner == 1)
                 {
-                    Players[1].Score += 1;
-                    Console.WriteLine($"{ Players[1].Name} WINS! " +
-                                      $"Score: { Players[1].Score}");
-                    if (Players[1].Score <= maxScore) { gameWinner = 1; }                   
-                } 
-                else{ Console.WriteLine("TIE!!!");}
+                    Players[1].Score += 1;                                              //Increment Player2 Score
+                    Console.WriteLine($"{ Players[1].Name} WINS! Score: { Players[1].Score}"); //Announce round winner
+                }
+                else { Console.WriteLine("TIE!!!");}                                    //Determines Tie
 
                 Menu.MenuDecorators("starlng");
                 
                 Console.WriteLine("ROUND SCORE:");
                 Console.WriteLine($"{Players[0].Name} Score:{Players[0].Score}" +       //Player 1 Score
                                 $" V {Players[1].Name} Score:{Players[1].Score}");      //Player 2 Score
-
+                
                 Menu.WaitForKey("Ready for the next round?", 1000);
             }
             while (Players[0].Score <= maxScore && Players[1].Score <= maxScore);
 
-            if (gameWinner == 0) { Console.WriteLine($"{Players[0].Name} Wins the game with {Players[0].Score} points"); }
-            else if (gameWinner == 0) { Console.WriteLine($"{Players[1].Name} Wins the game with {Players[1].Score} points"); }
-            else { Console.WriteLine("MOM!!! THE UNIVERSE BROKE AGAIN"); }
+            if (Players[0].Score > Players[1].Score) { gameWinner = true; }             //Set Player 1 as Winner  
+            else { gameWinner = false; }                                                //Set Player 2 as Winner  
 
+            /////////End Game Logic needs to works/////////
+            if (gameWinner == true) { Console.WriteLine($"{Players[0].Name} Wins the game with {Players[0].Score} points"); }
+            else if (gameWinner == false) { Console.WriteLine($"{Players[1].Name} Wins the game with {Players[1].Score} points"); }
+            else { Console.WriteLine("MOM!!! THE UNIVERSE BROKE AGAIN"); }
+            ///////////////////////////////////////////////////////////
 
             Console.WriteLine($"{Players[0].Name} Score:{Players[0].Score}" +       //Player 1 Score
                                 $" V {Players[1].Name} Score:{Players[1].Score}");      //Player 2 Score
@@ -212,38 +210,38 @@ namespace RPSLS
         {
             int winDecide = 0;
             string message = "";
-            // 0 == P1 Win // 1 == P2 Win // 2 == Tie
+            
             switch (player01Gesture.Value)
             {
-                case 0: //rock      //Update outcome verbage
+                case 0: //rock      //Update outcome verbage//
                     {
-                        if ((player02Gesture.Value == 2) //Crushes Scissors
-                            || (player02Gesture.Value == 3)) //Smashes Lizard 
-                        { winDecide = 0; message = "Win"; } //ROCK WINS!!!
+                        if ((player02Gesture.Value == 2)        //Crushes Scissors
+                            || (player02Gesture.Value == 3))    //Smashes Lizard 
+                        { winDecide = 0; message = "Win"; }     //ROCK WINS!!!
 
-                        else if (player02Gesture.Value == 1) // Paper Covers
-                        { winDecide = 1; message = "Lose"; } //ROCK LOSES
+                        else if (player02Gesture.Value == 1)    // Paper Covers
+                        { winDecide = 1; message = "Lose"; }    //ROCK LOSES
                         else { winDecide = 2; message = "TIE"; }
                         break;
                     }
                 case 1: // Paper
                     {
                         if (player02Gesture.Value == 0)//
-                        { winDecide = 0; message = "Win"; } // WINS!!!
+                        { winDecide = 0; message = "Win"; }      // WINS!!!
 
-                        else if (player02Gesture.Value == 2) //  
-                        { winDecide = 1; message = "Lose"; } // LOSES
+                        else if (player02Gesture.Value == 2)    //  
+                        { winDecide = 1; message = "Lose"; }     // LOSES
                         else { winDecide = 2; message = "TIE"; }
                         break;
                     }
                 case 2: // Scissors
                     {
-                        if ((player02Gesture.Value == 1) //
-                            || (player02Gesture.Value == 3)) // 
-                        { winDecide = 0; message = "Win"; } //Scissors WINS!!!
-                        else if ((player02Gesture.Value == 0) //
-                            || (player02Gesture.Value == 4)) //
-                        { winDecide = 1; message = "Lose"; } //Scissors Loses!!!
+                        if ((player02Gesture.Value == 1)        //
+                            || (player02Gesture.Value == 3))    // 
+                        { winDecide = 0; message = "Win"; }     //Scissors WINS!!!
+                        else if ((player02Gesture.Value == 0)   //
+                            || (player02Gesture.Value == 4))    //
+                        { winDecide = 1; message = "Lose"; }    //Scissors Loses!!!
                         else { winDecide = 2; message = "TIE"; }
                         break;
                     }
