@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Policy;
 
 namespace RPSLS
@@ -34,7 +35,7 @@ namespace RPSLS
         {
             //Menu.Welcome();                                 //Welcome players to game
             //Menu.Pause("LOADING...", 1000);                    //"LOADS" The game
-            GesturesGroup.gesturesType
+            
         }
 
         public void MainMenu()                              //Obfuscate in the Menu class???
@@ -146,35 +147,41 @@ namespace RPSLS
         public void RunGame()
         {
             bool isPlayer01Turn = true;
-            string player01Gesture;
-            string player02Gesture;
+            GestureType player01Gesture;
+            GestureType player02Gesture;
+            int maxScore = 1; //Best of three %5 best of 5
 
-            while (Players[0].Score >= 0 && Players[1].Score >= 0)
+            //best of 3 or more
+            //handle ties
+                        
+
+            while (Players[0].Score <= maxScore && Players[1].Score <= maxScore)
             {
                 if (isPlayer01Turn == true)
                 {
                     player01Gesture = Players[0].ChooseGesture(Players[0]);
-                    
-                    
-                    Console.WriteLine($"Player 01 choose {player01Gesture}");
-                    Menu.WaitForKey($"Press ENTER for Player02 turn", 500);
+                    Console.WriteLine($"{Players[0].Name} choose {player01Gesture.Type}");
+                    Menu.WaitForKey($"Press ENTER for {Players[1].Name} turn", 500);
                     isPlayer01Turn = false;
                 }
                 else
                 {
                     player02Gesture = Players[1].ChooseGesture(Players[1]);
-                    Console.WriteLine($"Player01 choose {player02Gesture}");
-                    Menu.WaitForKey($"Press ENTER for Player02 turn", 500);
+                    Console.WriteLine($"{Players[1].Name} choose {player02Gesture.Type}");
+                    Menu.WaitForKey($"Press ENTER for {Players[0].Name} turn", 500);
                     isPlayer01Turn = true;
                 }
+                Console.WriteLine("End Loop");
+                Menu.Pause("TEST", 1000);
 
-                
 
             }
-
-            //Human.ChooseGesture(Players.[0]);
         }
 
+        public void CompareGesture()
+        {
+
+        }
 
         public Player PlayerSetUp()                     // Proof of Concept
         {                                               // Game Specific Variables

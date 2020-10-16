@@ -10,8 +10,10 @@ namespace RPSLS
     {   
         //Member Variables
         Random Random; //to randomized choices
-        public string Name;
-        
+        public GestureType gesture;
+
+
+
 
         public Computer(string name, int score) : base(score)
         {
@@ -21,11 +23,11 @@ namespace RPSLS
             score = 0;
         }
 
-        public override string ChooseGesture(Player player)
+        public override GestureType ChooseGesture(Player player)
         {   //inherits gesture
             //base.ChooseGesture(player);
             //Computer generates Gesture
-            string gesture = null;
+            
             int HashValue = AIrandomGen();                               //Generate's AI Choice
 
             Menu.Clear();
@@ -35,32 +37,13 @@ namespace RPSLS
             
             switch (HashValue)
             {
-                case 1:
-                    { gesture = "rock"; 
-                        //Console.WriteLine($"{player.Name}chose {gesture}");
-                        break; 
-                    }
-                case 2:
-                    { gesture = "paper"; 
-                        //Console.WriteLine($"{player.Name}chose {gesture}");
-                        break;
-                    }
-                case 3:
-                    { gesture = "scissors";
-                        //Console.WriteLine($"{player.Name}chose {gesture}");
-                        break;
-                    }
-                case 4:
-                    { gesture = "lizard"; 
-                        //Console.WriteLine($"{player.Name}chose {gesture}");
-                        break;
-                    }
-                case 5:
-                    { gesture = "spock"; 
-                        //Console.WriteLine($"{player.Name}chose {gesture}");
-                        break;
-                    }
-                default: Console.WriteLine("Error 400"); break;
+                case 1: gesture = gesturesGroup.gesturesType[0]; break; // rock
+                case 2: gesture = gesturesGroup.gesturesType[1]; break; // paper
+                case 3: gesture = gesturesGroup.gesturesType[2]; break; // scissors
+                case 4: gesture = gesturesGroup.gesturesType[3]; break; // lizard
+                case 5: gesture = gesturesGroup.gesturesType[4]; break; // spock
+                default:
+                    { Console.WriteLine("Please choose from the list"); break; }
             }
             
             Menu.MenuDecorators("slashlf");

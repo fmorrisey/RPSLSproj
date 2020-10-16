@@ -16,7 +16,7 @@ namespace RPSLS
     //Scissors decapitates Lizard
 
 
-    public class GestureType : GesturesGroup
+    public class GestureType
     {
         //Member Variables
         public string Type;

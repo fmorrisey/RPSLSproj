@@ -161,8 +161,8 @@ namespace RPSLS
                 case "dash": Console.WriteLine("---------------"); break;
                 case "plus": Console.WriteLine("+++++++++++++++"); break;
                 case "equal": Console.WriteLine("==============="); break;
-                case "slashrt": Console.WriteLine("///////////////"); break;
-                case "slashlf": Console.WriteLine("\\\\\\\\\\\\\\\\"); break;
+                case "slashrt": Console.WriteLine("////////////////////////////////"); break;
+                case "slashlf": Console.WriteLine("////////////////////////////////"); break;
                 case "pipe": Console.WriteLine("|||||||||||||||||||"); break;
                 case "hash": Console.WriteLine("###################"); break;
                 case "div": Console.Write(" || "); break;

@@ -9,25 +9,23 @@ namespace RPSLS
     public class Human : Player
     {
         //Member Variables
-        public string gesture;                               
+        public GestureType gesture;
+
 
         public Human(string name, int score) : base(score)
         {
             this.Name = name;
             this.Score = score;
-            //Menu = New Menu();
+            
             
         }
 
-        public override string ChooseGesture(Player player)
+        public override GestureType ChooseGesture(Player player)
         {   //inherits gesture
             //base.ChooseGesture(player);
             
             //User chosen logic
             int playerChoice = 0;
-            
-            bool askAgain = false;
-
             //Menu.PlayerSelection(player);
             Menu.Clear();
             Console.WriteLine($"It's {player.Name} TURN!");
@@ -36,21 +34,17 @@ namespace RPSLS
             
             switch (playerChoice)
             {
-                case 1: return gesture = "rock";
-                case 2: return gesture = "paper";
-                case 3: return gesture = "scissors";
-                case 4: return gesture = "lizard";
-                case 5: return gesture = "spock";
+                case 1: gesture = gesturesGroup.gesturesType[0]; break; // rock
+                case 2: gesture = gesturesGroup.gesturesType[1]; break; // paper
+                case 3: gesture = gesturesGroup.gesturesType[2]; break; // scissors
+                case 4: gesture = gesturesGroup.gesturesType[3]; break; // lizard
+                case 5: gesture = gesturesGroup.gesturesType[4]; break; // spock
                 default:
-                    {
-                        Console.WriteLine("Please choose from the list");
-                        askAgain = true;
-                        break;
-                    }
+                    { Console.WriteLine("Please choose from the list"); break; }
             }
-                 
+            Menu.MenuDecorators("slashrt");
 
-            return null;
+            return gesture;
 
 
 

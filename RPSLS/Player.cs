@@ -16,14 +16,17 @@ namespace RPSLS
         public Menu Menu;
         public string gesture;
 
+
+        public GesturesGroup gesturesGroup;
+        
         //CTOR??
         public Player(int score)
         {
-            
+            gesturesGroup = new GesturesGroup();
             Menu = new Menu();
         }
 
-        public virtual string ChooseGesture(Player player)
+        public virtual GestureType ChooseGesture(Player player)
         {   //Run Logic here?
             return null;
         }
