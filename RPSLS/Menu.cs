@@ -103,7 +103,7 @@ namespace RPSLS
             do
             {
 
-                Console.Write($"option: ");
+                Console.Write($"option:  ");
                 if (int.TryParse(Console.ReadLine(), out GestureSelection))
                 { return GestureSelection; }
                 else
@@ -113,7 +113,7 @@ namespace RPSLS
                 }
             } while (askAgain == true);
 
-            return MainMenuSelection;
+            return GestureSelection;
         }
 
         public bool PlayAgain(bool newGame)

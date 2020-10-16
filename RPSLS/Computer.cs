@@ -12,16 +12,16 @@ namespace RPSLS
         Random Random; //to randomized choices
         public string Name;
 
-        public Computer(string name) : base(name)
+        public Computer(string name) : base()
         {
-            Name = "Computer";
-            Console.WriteLine("Computer Loaded");
-            Random random = new Random();
+            this.Name = name;
+            //Console.WriteLine("Computer Loaded");
+            //Random random = new Random();
         }
 
         public override string ChooseGesture(Player player)
         {   //inherits gesture
-            base.ChooseGesture();
+            base.ChooseGesture(player);
             //Computer generates Gesture
             string gesture = null;
             int HashValue = AIrandomGen();

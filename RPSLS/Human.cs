@@ -9,25 +9,25 @@ namespace RPSLS
     public class Human : Player
     {
         //Member Variables
-               
+                       
 
-        public Human(string name) : base(name)
+        public Human(string name) : base()
         {
             this.Name = name;
-            Console.WriteLine("Human Loaded");
+            //Console.WriteLine("Human Loaded");
             
             
         }
 
         public override string ChooseGesture(Player player)
         {   //inherits gesture
-            base.ChooseGesture();
+            base.ChooseGesture(player);
             
             //User chosen logic
             int playerChoice = 0;
             string gesture = "";
 
-            Menu.PlayerSelection(player);
+            //Menu.PlayerSelection(player);
 
             switch (playerChoice)
             {
@@ -38,8 +38,8 @@ namespace RPSLS
                 case 5: return gesture = "spock";
                 default: Console.WriteLine("Error 400"); break;
             }
-                        
-            return playerChoice;
+
+            return null;
 
 
 
