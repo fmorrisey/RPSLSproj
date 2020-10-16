@@ -88,22 +88,21 @@ namespace RPSLS
             
         }
 
-        public int PlayerChoice(Player player)
+        public int PlayerChoice()
         {
-            int GestureSelection;
-            bool askAgain;
-            Clear();
-
             Console.WriteLine("##### PICK A GESTURE #### \n" +
                               "    1: Rock \n" +
                               "    2: Paper \n" +
                               "    3: Scissors \n" +
                               "    4: Lizard \n" +
-                              "    5: Spock \n" );
+                              "    5: Spock \n");
+
+            int GestureSelection = 0;
+            bool askAgain;
+            //Later iterations will use one method call
             do
             {
 
-                Console.Write($"option:  ");
                 if (int.TryParse(Console.ReadLine(), out GestureSelection))
                 { return GestureSelection; }
                 else
@@ -114,6 +113,17 @@ namespace RPSLS
             } while (askAgain == true);
 
             return GestureSelection;
+        }
+
+
+        public void ComputerChoice()
+        {   //DRAWS AI SPECIFIC MENU
+            Console.WriteLine("##### COMPUTER AI GESTURE #### \n" +
+                              "    @: Rock \n" +
+                              "    @: Paper \n" +
+                              "    @: Scissors \n" +
+                              "    @: Lizard \n" +
+                              "    @: Spock \n" );          
         }
 
         public bool PlayAgain(bool newGame)

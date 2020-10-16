@@ -12,6 +12,7 @@ namespace RPSLS
         
         public Menu Menu;
         public List<Player> Players;
+        public GesturesGroup GesturesGroup;
         public Player player;
         //public Player player01;
         //public Player player02;
@@ -23,22 +24,17 @@ namespace RPSLS
 
             Menu = new Menu();                              // Creates the Menu
             Players = new List<Player>();                   // Creates the Player List
-            List<Gesture> gestures = new List<Gesture>()    // Creates the Gesture List
-            {                                               // This List could use some
-                new Gesture("Rock"),                        // Here Gestures eh
-                new Gesture("Paper"),
-                new Gesture("Scissors"),
-                new Gesture("Lizard"),
-                new Gesture("Mr. Spock"),
-            };
+            GesturesGroup = new GesturesGroup();
+            
+            
                        
         }
 
         public void StartGame()
-        {   
+        {
             //Menu.Welcome();                                 //Welcome players to game
             //Menu.Pause("LOADING...", 1000);                    //"LOADS" The game
-            
+            GesturesGroup.gesturesType
         }
 
         public void MainMenu()                              //Obfuscate in the Menu class???
@@ -96,9 +92,9 @@ namespace RPSLS
                     {
                         case 1:
                             {/*Create Human v Human */
-                                player01 = new Human("player01");
+                                player01 = new Human("player01", 0);
                                 Console.WriteLine($" {player01.Name} Human Loaded");
-                                player02 = new Human("player02");
+                                player02 = new Human("player02", 0);
                                 Console.WriteLine($" {player02.Name} Human Loaded");
                                 
                                 Players.Add(player01);
@@ -108,9 +104,9 @@ namespace RPSLS
                             }
                         case 2:
                             {/*Create Human v AI*/
-                                player01 = new Human("player01");
+                                player01 = new Human("player01", 0);
                                 Console.WriteLine($" {player01.Name} Human AI Loaded");
-                                player02 = new Computer("Computer AI");
+                                player02 = new Computer("Computer AI", 0);
                                 Console.WriteLine($" {player02.Name} Computer Loaded");
 
                                 Players.Add(player01);
@@ -119,9 +115,9 @@ namespace RPSLS
                             }
                         case 3:
                             {/*Create AIvAI*/
-                                player01 = new Computer("Computer AI 01");
+                                player01 = new Computer("SKYNET AI@1", 0);
                                 Console.WriteLine($" {player02.Name} Computer Loaded");
-                                player02 = new Computer("Computer AI 01");
+                                player02 = new Computer("DEEP BLUE AI@2", 0);
                                 Console.WriteLine($" {player02.Name} Computer Loaded");
                                 Players.Add(player01);
                                 Players.Add(player02);
@@ -149,7 +145,34 @@ namespace RPSLS
 
         public void RunGame()
         {
-            Console.WriteLine(Players[0].Name.Count()); 
+            bool isPlayer01Turn = true;
+            string player01Gesture;
+            string player02Gesture;
+
+            while (Players[0].Score >= 0 && Players[1].Score >= 0)
+            {
+                if (isPlayer01Turn == true)
+                {
+                    player01Gesture = Players[0].ChooseGesture(Players[0]);
+                    
+                    
+                    Console.WriteLine($"Player 01 choose {player01Gesture}");
+                    Menu.WaitForKey($"Press ENTER for Player02 turn", 500);
+                    isPlayer01Turn = false;
+                }
+                else
+                {
+                    player02Gesture = Players[1].ChooseGesture(Players[1]);
+                    Console.WriteLine($"Player01 choose {player02Gesture}");
+                    Menu.WaitForKey($"Press ENTER for Player02 turn", 500);
+                    isPlayer01Turn = true;
+                }
+
+                
+
+            }
+
+            //Human.ChooseGesture(Players.[0]);
         }
 
 
@@ -158,8 +181,8 @@ namespace RPSLS
             Player player01 = null;                         
             Player player02 = null;
 
-            player01 = new Human("");
-            player02 = new Computer("");
+            //player01 = new Human("");
+            //player02 = new Computer("");
             //Players.Add(player01);
             //Players.Add(player02);
             return null;

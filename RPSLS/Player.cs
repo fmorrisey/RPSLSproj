@@ -11,16 +11,16 @@ namespace RPSLS
         //Member Variables
         public List<Player> Players;
         public Player player;
-
-        public Menu Menu;
-
         public string Name;
+        public int Score;
+        public Menu Menu;
+        public string gesture;
 
         //CTOR??
-        public Player()
+        public Player(int score)
         {
-                                
             
+            Menu = new Menu();
         }
 
         public virtual string ChooseGesture(Player player)

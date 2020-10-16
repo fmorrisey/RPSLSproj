@@ -16,20 +16,17 @@ namespace RPSLS
     //Scissors decapitates Lizard
 
 
-    public class Gesture
+    public class GestureType : GesturesGroup
     {
         //Member Variables
-        public string gesture;
+        public string Type;
         
-        public Gesture(string gesture)
+        public GestureType(string type)
         {
-            this.gesture = gesture;
+            this.Type = type;       //Name ex Lizard
+            
         }
 
-        public void LoadGestures()
-        {
-            
-            
-        }
+        
     }
 }
