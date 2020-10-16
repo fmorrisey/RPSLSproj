@@ -9,17 +9,42 @@ namespace RPSLS
     public class Computer : Player
     {   
         //Member Variables
-        Random rand; //to randomized choices
+        Random Random; //to randomized choices
+        public string Name;
 
-        public Computer() : base()
+        public Computer(string name) : base(name)
         {
+            Name = "Computer";
             Console.WriteLine("Computer Loaded");
+            Random random = new Random();
         }
 
-        public override void Gesture()
+        public override string ChooseGesture(Player player)
         {   //inherits gesture
+            base.ChooseGesture();
             //Computer generates Gesture
+            string gesture = null;
+            int HashValue = AIrandomGen();
 
+            switch (HashValue)
+            {
+                case 1: return gesture = "rock";
+                case 2: return gesture = "paper";
+                case 3: return gesture = "scissors";
+                case 4: return gesture = "lizard";
+                case 5: return gesture = "spock";
+                default: Console.WriteLine("Error 400"); break;
+            }
+                       
+            return gesture;
+        }
+
+        private int AIrandomGen()
+        {
+            int hash = 0;
+            Random.Next(1, 5);
+            return hash;
+          
         }
     }
 }

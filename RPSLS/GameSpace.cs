@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Security.Policy;
 
 namespace RPSLS
 {
@@ -8,7 +10,7 @@ namespace RPSLS
 
         
         public Menu Menu;
-        public List<Player> Players;
+        
         //public Player player01;
         //public Player player02;
 
@@ -26,17 +28,17 @@ namespace RPSLS
                 new Gesture("Lizard"),
                 new Gesture("Mr. Spock"),
             };
+                       
         }
 
         public void StartGame()
-        {   //Welcome players to game
-            //Menu.Welcome();
-            //Console.WriteLine("GAME START");
-            Console.WriteLine("RunGame");
-            Menu.Pause("LOADING...", 0);                    //"LOADS" The game
+        {   
+            //Menu.Welcome();                                 //Welcome players to game
+            //Menu.Pause("LOADING...", 1000);                    //"LOADS" The game
+            
         }
 
-        public void MainMenu()                              //Obfuscate in the menu class???
+        public void MainMenu()                              //Obfuscate in the Menu class???
         {   //Initial Menu
             int PlayerMenuChoice;
             bool askAgain = false;
@@ -45,10 +47,10 @@ namespace RPSLS
             do
             {
                 //MAIN MENU//
-                PlayerMenuChoice = Menu.MainMenu();         //Loads Graphics and asks for choice
-                switch (PlayerMenuChoice)
+                PlayerMenuChoice = Menu.MainMenu();         // This class draws menu and returns
+                switch (PlayerMenuChoice)                   // a player's choice
                 {
-                    case 1: RunGame(); askAgain = true; break;
+                    case 1: PlayerSelection(); askAgain = true; break;
                     case 2: Menu.DisplayeRules(); askAgain = true; break;
                     case 3: askAgain = false; break;
                     default:
@@ -61,79 +63,16 @@ namespace RPSLS
 
         }
 
-        public void RunGame()
-        {                                                   // Initializes the game
-            Player player01 = null;                         // Game Specific Variables
-            Player player02 = null;
-            bool askAgain = false;
-            int playerSetupChoice;
-
-
-            Menu.Clear();                                   
-            Console.WriteLine("##### PLAYER SETUP MENU #### \n" +
-                              "    1: Human v Human \n" +
-                              "    2: Human v Computer \n" +
-                              "    3: Computer v Computer \n" +
-                              "    4: Return to Main Menu \n");
-
-            do
-            {                                               //Set_Up Player01 and Player02
-                Console.Write("Enter a menu option: ");
-                if (int.TryParse(Console.ReadLine(), out playerSetupChoice))
-                {
-                    switch (playerSetupChoice)
-                    {
-                        case 1:
-                            {/*Create Human v Human */
-                                player01 = new Human();
-                                player02 = new Human();
-                                Players.Add(player01);
-                                Players.Add(player02);
-                                break;
-                            }
-                        case 2:
-                            {/*Create Human v AI*/
-                                player01 = new Human();
-                                player02 = new Computer();
-                                Players.Add(player01);
-                                Players.Add(player02);
-                                
-                                break;
-                            }
-                        case 3:
-                            {/*Create AIvAI*/
-                                player01 = new Computer();
-                                player02 = new Computer();
-                                Players.Add(player01);
-                                Players.Add(player02);
-                                break;
-                            }
-                        case 4:
-                            {
-                                MainMenu();
-                                break;
-                            }
-                        default:
-                            Console.WriteLine("ERROR 400");
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect Input");
-                    askAgain = true;
-                }
-            }
-            while (askAgain == true);
-        }
+        
+                
 
         public Player PlayerSetUp()                     // Proof of Concept
         {                                               // Game Specific Variables
             Player player01 = null;                         
             Player player02 = null;
 
-            player01 = new Human();
-            player02 = new Computer();
+            player01 = new Human("");
+            player02 = new Computer("");
             Players.Add(player01);
             Players.Add(player02);
             return null;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace RPSLS
 {
     //This Class is focused on menus for the player to interact with
-    class Menu
+    public class Menu
     {
         //Member Variables
         
@@ -30,7 +30,7 @@ namespace RPSLS
                          "### WELCOME TO ROCK-PAPER-SCISSORS-LIZARD-SPOCK ### \n" +
                          "################################################### \n", 4, 300);
 
-            Console.WriteLine("################################################### \n" +
+            Console.Write("################################################### \n" +
                             "### WELCOME TO ROCK-PAPER-SCISSORS-LIZARD-SPOCK ### \n" +
                             "################################################### \n");
             Console.WriteLine("      THE SEQUEAL TO THE SCHOOL YARD CLASSIC          ");
@@ -67,21 +67,53 @@ namespace RPSLS
             return MainMenuSelection;
         }
 
+        
         public void DisplayeRules()
         {
             Clear();
-            Console.WriteLine("THESE ARE THE RULES PASSED DOWN BY GENERATIONS \n" +
-                              "by the Cooper Clan. Remember them and share. ");
-            MenuDecorators("star");
-            Console.Write("Rock crushes Scissors \n" +
-                          "Scissors cuts Paper\n" +
-                          "Paper covers Rock\n" +
-                          "Rock crushes Lizard\n" +
-                          "Lizard poisons Spock\n" +
-                          "Spock smashes Scissors\n" +
-                          "Scissors decapitates Lizard \n");
-            MenuDecorators("star");
-            Pause("---Press Enter to Exit---", 100);
+            MenuDecorators("starlng");
+            Console.WriteLine("** THESE ARE THE RULES PASSED DOWN FOR **  \n" +
+                              "** GENERATIONS BY THE COOPER CLAN ** \n" +
+                              "    ***** REMEMBER THEM WELL ******");
+            MenuDecorators("starLng");
+                Console.Write("       Rock crushes Scissors \n" +
+                              "        Scissors cuts Paper\n" +
+                              "         Paper covers Rock\n" +
+                              "        Rock crushes Lizard\n" +
+                              "        Lizard poisons Spock\n" +
+                              "       Spock smashes Scissors\n" +
+                              "    Scissors decapitates Lizard \n");
+            MenuDecorators("starLng");
+                   WaitForKey("      ---Press Enter to Exit---", 100);
+            
+        }
+
+        public int PlayerChoice(Player player)
+        {
+            int GestureSelection;
+            bool askAgain;
+            Clear();
+
+            Console.WriteLine("##### PICK A GESTURE #### \n" +
+                              "    1: Rock \n" +
+                              "    2: Paper \n" +
+                              "    3: Scissors \n" +
+                              "    4: Lizard \n" +
+                              "    5: Spock \n" );
+            do
+            {
+
+                Console.Write($"option: ");
+                if (int.TryParse(Console.ReadLine(), out GestureSelection))
+                { return GestureSelection; }
+                else
+                {
+                    Console.WriteLine("Incorrect Input");
+                    askAgain = true;
+                }
+            } while (askAgain == true);
+
+            return MainMenuSelection;
         }
 
         public bool PlayAgain(bool newGame)
@@ -115,6 +147,7 @@ namespace RPSLS
             switch (parameterconvert)
             {
                 case "star": Console.WriteLine("***************"); break;
+                case "starlng": Console.WriteLine("*****************************************"); break;
                 case "dash": Console.WriteLine("---------------"); break;
                 case "plus": Console.WriteLine("+++++++++++++++"); break;
                 case "equal": Console.WriteLine("==============="); break;
@@ -135,15 +168,23 @@ namespace RPSLS
             Console.WriteLine("Thanks For Playing!!!");
             Console.WriteLine("Winners Don't Do Drugs");
             Console.WriteLine("FBI ANTI-PIRACY WARNING");
-            Pause("", 1000);
+            WaitForKey("", 1000);
         }
 
-        public void Pause(string message, int waitTime)
+        public void WaitForKey(string message, int waitTime)
         {
             //Basically a CR with text output so the user knows what it's asking for
             Console.WriteLine(message);
             Thread.Sleep(waitTime);// Waits for player to read team info
             Console.ReadLine();
+        }
+        
+        public void Pause(string message, int waitTime)
+        {
+            //Basically a CR with text output so the user knows what it's asking for
+            Console.WriteLine(message);
+            Thread.Sleep(waitTime);// Waits for player to read team info
+            //Great for Pseudo Loadscreens
         }
 
         public void BlinkerTrip(string text, int blinkNum, int milliseconds)
@@ -173,6 +214,7 @@ namespace RPSLS
                 string alert = visible ? ($"{text}") : "";
                 visible = !visible;
                 Console.Clear();
+                Console.WriteLine();
                 Console.Write("{0}\n", alert);
                 Thread.Sleep(milliseconds);
             }
