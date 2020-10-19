@@ -63,7 +63,10 @@ namespace RPSLS
                           "        Rock crushes Lizard\n" +
                           "        Lizard poisons Spock\n" +
                           "       Spock smashes Scissors\n" +
-                          "    Scissors decapitates Lizard \n");
+                          "    Scissors decapitates Lizard \n" +
+                          "        Lizard eats Paper \n" +
+                          "        Paper disproves Spock \n " +
+                          "       Spock vaporizes Rock \n");
             MenuDecorators("starLng");
             WaitForKey("      ---Press Enter to Exit---", 100);
         }
