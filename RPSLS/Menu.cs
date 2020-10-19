@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    //This Class is focused on menus for the player to interact with
+    /// <summary>
+    ///  This class is for the bulk of all menu and displays graphics
+    ///  Now free of any logic and should handle 100% draw functions with
+    ///  zero return functions.
+    /// </summary>
+    /// 
     public class Menu
     {
-        //Member Variables
-        
-        //Update for RPSLS//
-
-        //Constructor
+        // No Member Variables
+        // Constructor
         public Menu()
         {
-            //Update for RPSLS
+
 
         }
 
-        public void Welcome()
+        public void DrawWelcome()
         {
             //Welcomes the player to the game
 
@@ -39,35 +36,19 @@ namespace RPSLS
             Console.WriteLine("      --Press ENTER to START a New Game!!!--");
             Thread.Sleep(800);
             Console.ReadLine();
+            Pause("LOADING...", 1000);               //"LOADS" The game
         }
-        
-        public int MainMenu()
-        {
-            int MainMenuSelection;
-            bool askAgain;
-            Clear();
 
+        public void DrawMainMenu()
+        {
+            Clear();
             Console.WriteLine("##### MAIN MENU #### \n" +
                               "    1: Play Game \n" +
                               "    2: Display the Rules \n" +
                               "    3: Exit The Game \n");
-            do
-            {
-                
-                Console.Write("Enter a menu option: ");
-                if (int.TryParse(Console.ReadLine(), out MainMenuSelection))
-                { return MainMenuSelection; }
-                else 
-                {
-                    Console.WriteLine("Incorrect Input");
-                    askAgain = true;
-                }
-            } while (askAgain == true);
-
-            return MainMenuSelection;
         }
 
-        
+
         public void DisplayeRules()
         {
             Clear();
@@ -76,82 +57,52 @@ namespace RPSLS
                               "** GENERATIONS BY THE COOPER CLAN ** \n" +
                               "    ***** REMEMBER THEM WELL ******");
             MenuDecorators("starLng");
-                Console.Write("       Rock crushes Scissors \n" +
-                              "        Scissors cuts Paper\n" +
-                              "         Paper covers Rock\n" +
-                              "        Rock crushes Lizard\n" +
-                              "        Lizard poisons Spock\n" +
-                              "       Spock smashes Scissors\n" +
-                              "    Scissors decapitates Lizard \n");
+            Console.Write("       Rock crushes Scissors \n" +
+                          "        Scissors cuts Paper\n" +
+                          "         Paper covers Rock\n" +
+                          "        Rock crushes Lizard\n" +
+                          "        Lizard poisons Spock\n" +
+                          "       Spock smashes Scissors\n" +
+                          "    Scissors decapitates Lizard \n");
             MenuDecorators("starLng");
-                   WaitForKey("      ---Press Enter to Exit---", 100);
-            
+            WaitForKey("      ---Press Enter to Exit---", 100);
         }
 
-        public int PlayerChoice()
+        public void DrawPlayerSelection()
         {
+            Clear();
+            Console.WriteLine("##### PLAYER SETUP MENU #### \n" +
+                              "    1: Human v Human \n" +
+                              "    2: Human v Computer \n" +
+                              "    3: Computer v Computer \n" +
+                              "    4: Return to Main Menu \n");
+        }
+
+        public void DrawGestureChoice()
+        {   //DRAWS AI SPECIFIC MENU FOR THE COMPUTER AI
             Console.WriteLine("##### PICK A GESTURE #### \n" +
                               "    1: Rock \n" +
                               "    2: Paper \n" +
                               "    3: Scissors \n" +
                               "    4: Lizard \n" +
                               "    5: Spock \n");
-
-            int GestureSelection = 0;
-            bool askAgain;
-            //Later iterations will use one method call
-            do
-            {
-                if (int.TryParse(Console.ReadLine(), out GestureSelection)) // If Integer 
-                    if (GestureSelection >= 1 && GestureSelection <= 5)     // And Between Range
-                    { return GestureSelection; }                            // Return Selection                               
-                    else { Console.WriteLine("Incorrect Input"); askAgain = true; }
-                else { Console.WriteLine("Incorrect Input"); askAgain = true; }
-            } while (askAgain == true);
-
-            return GestureSelection;
         }
 
-        public void RoundDisplay(int rounds)
-        {                      
+        public void DisplayRounds(int rounds)
+        {
             Console.WriteLine($"##### ROUND  {rounds} ####");
         }
 
         public void ComputerChoice()
-        {   //DRAWS AI SPECIFIC MENU
+        {   //DRAWS AI SPECIFIC MENU FOR THE COMPUTER AI
             Console.WriteLine("##### COMPUTER AI GESTURE #### \n" +
                               "    @: Rock \n" +
                               "    @: Paper \n" +
                               "    @: Scissors \n" +
                               "    @: Lizard \n" +
-                              "    @: Spock \n" );          
+                              "    @: Spock \n");
         }
-
-        public bool PlayAgain(bool newGame)
-        {
-            newGame = false;
-            Clear();
-            BlinkerTrip("Play Again???", 3, 300);
-            Console.WriteLine("enter y/n");
-            
-            
-            while (newGame != true)
-            {
-                string userChoice = Console.ReadLine();
-                switch (userChoice)
-                {
-                    case "y": newGame = true; return newGame;
-                    case "Y": newGame = true; return newGame;
-                    case "n": newGame = false; return newGame;
-                    case "N": newGame = false; return newGame;
-                    default: Console.WriteLine("Please enter Y or N");break;
-                }
-                Console.WriteLine(newGame + userChoice);
-            }
-            
-            return newGame;
-        }
-
+                
         public void MenuDecorators(string Decoration)
         { // call using the options to decorate the menues!
             string parameterconvert = Decoration.ToLower();
@@ -172,7 +123,7 @@ namespace RPSLS
             }
         }
 
-        public void Exit()
+        public void ExitMessageDraw()
         {
             Clear();
             Console.WriteLine("Created by: Forrest Morrisey // Oct 2020");
@@ -189,7 +140,7 @@ namespace RPSLS
             Thread.Sleep(waitTime);// Waits for player to read team info
             Console.ReadLine();
         }
-        
+
         public void Pause(string message, int waitTime)
         {
             //Basically a CR with text output so the user knows what it's asking for
@@ -237,92 +188,7 @@ namespace RPSLS
             Console.Clear();
         }
 
-        //HERE LIES THAR LEGACY CODE RRRR....
-        /*
-        //Update for RPSLS
-        public void DisplayScore(List<Dinosaur> dinosaurs, List<Robot> robots)
-        {   //An Attempt to make a table but will require actual table commands and custom classes
-            //https://stackoverflow.com/questions/856845/how-to-best-way-to-draw-table-in-console-app-c
-            Console.WriteLine("DAS DINO HERD!!!");
-            MenuDecorators("dash");
 
-            for (int i = 0; i < dinosaurs.Count; i++)
-            {
-                //Row 1
-                Console.Write($"| {dinosaurs[i].Type} |");
-                MenuDecorators("div");
-                Console.Write($"| {robots[i].Name} |");
-
-                // Row 2
-                Console.Write($"{dinosaurs[i].Health} |");
-                MenuDecorators("div");
-                Console.Write($"| {robots[i].Health} |");
-
-                // Row 3
-                Console.Write($"{dinosaurs[i].Energy} |");
-                MenuDecorators("div");
-                Console.Write($"| {robots[i].PowerLevel} |");
-
-                // Row 4
-                Console.Write($"{dinosaurs[i].AttackType} |");
-                MenuDecorators("div");
-                Console.Write($"| {robots[i].Weapon} |");
-
-                //Row 5
-                Console.WriteLine($"{dinosaurs[i].AttackPower} |");
-                MenuDecorators("div");
-                Console.Write($"| {robots[i].AttackPower} |");
-            }
-
-            Console.WriteLine("DER ROBO Fleet!!!");
-            MenuDecorators("dash");
-
-            for (int i = 0; i < robots.Count; i++)
-            {
-                Console.Write($"| {robots[i].Name} |");
-                Console.Write($"{robots[i].Health} |");
-                Console.Write($"{robots[i].PowerLevel} |");
-                Console.Write($"{robots[i].Weapon} |");
-                Console.WriteLine($"{robots[i].AttackPower} |");
-            }
-        }
-
-        //Update for RPSLS
-        public void DisplayDinoHerd(List<Dinosaur> dinosaurs)
-        { // This creates and prints a list of Dinos for the player
-            Console.WriteLine();
-            MenuDecorators("star");
-            Console.WriteLine("DAS DINO HERD!!!");
-            MenuDecorators("dash");
-
-            for (int i = 0; i < dinosaurs.Count; i++)
-            {
-                Console.Write($"| {dinosaurs[i].Type} |");
-                Console.Write($"{dinosaurs[i].Health} |");
-                Console.Write($"{dinosaurs[i].Energy} |");
-                Console.Write($"{dinosaurs[i].AttackType} |");
-                Console.WriteLine($"{dinosaurs[i].AttackPower} |");
-            }
-        }
-
-        //Update for RPSLS
-        public void DisplayRobotFleet(List<Robot> robots)
-        { // This creates and prints a list of robots for the player
-            MenuDecorators("star");
-            Console.WriteLine("DER ROBO Fleet!!!");
-            MenuDecorators("dash");
-            
-            for (int i = 0; i < robots.Count; i++)
-            {
-                Console.Write($"| {robots[i].Name} |");
-                Console.Write($"{robots[i].Health} |");
-                Console.Write($"{robots[i].PowerLevel} |");
-                Console.Write($"{robots[i].Weapon} |");
-                Console.WriteLine($"{robots[i].AttackPower} |");
-            }
-        }*/
-
-        //Update for RPSLS???
 
 
 

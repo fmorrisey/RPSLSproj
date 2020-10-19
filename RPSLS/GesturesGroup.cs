@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
+    /// <summary>
+    /// This class creates the gesture types such as the rock object
+    /// and adds it to the group list to be used in the game!
+    /// </summary>
     public class GesturesGroup
     {
         public string name;
@@ -15,14 +19,12 @@ namespace RPSLS
         {
             gesturesType = new List<GestureType>()              // Creates the Gesture List
             {                                                   // This List could use some
-                new GestureType("Rock", 0),                        // Here Gestures eh
+                new GestureType("Rock", 0),                        // Here Are Gestures eh
                 new GestureType("Paper", 1),
                 new GestureType("Scissors", 2),
                 new GestureType("Lizard", 3),
                 new GestureType("Mr. Spock", 4),
             };
-
-
 
             /*
             Rock 0      crushes     Scissors 2

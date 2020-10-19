@@ -5,19 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RPSLS
-{   //Contains information for Gestures inheritance
-
-    //Rock crushes Scissors
-    //Scissors cuts Paper
-    //Paper covers Rock
-    //Rock crushes Lizard
-    //Lizard poisons Spock
-    //Spock smashes Scissors
-    //Scissors decapitates Lizard
-
+{   
+    /// <summary>
+    /// This Class is for the type of gesture object created to be added to the GestureGroup
+    /// </summary>
 
     public class GestureType
-    {
+    {      
         //Member Variables
         public string Type;
         public int Value;

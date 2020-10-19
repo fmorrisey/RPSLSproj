@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPSLS
-{   // Computer AI CLASS
+{  /// <summary>
+   /// This child class inherits from the player class and is
+   /// what creates the AI experience for the game.
+   /// Destroy only if sentience is questioned
+   /// </summary>
     public class Computer : Player
-    {   
+    {
         //Member Variables
         Random Random; //to randomized choices
         public GestureType gesture;
@@ -16,43 +16,42 @@ namespace RPSLS
         {
             this.Name = name;
             this.Score = score;
-            
         }
 
         public override GestureType ChooseGesture(Player player)
-        {   //inherits gesture
-            //base.ChooseGesture(player);
-            //Computer generates Gesture
-            
-            int HashValue = AIrandomGen();                               //Generate's AI Choice
+        {   // AI'S Gesture section process
+            int HashValue = AIrandomGen();                              //Generate's AI Choice
 
-            Menu.Clear();
-            Console.WriteLine($"It's @AI: {player.Name} TURN!");     
-            Menu.MenuDecorators("slashrt");                             
-            Menu.ComputerChoice();                                       //Draw's Computer's Menu
-            
-            switch (HashValue)
+            Menu.Clear();                                               //Draw's Computer's Menu    
+            Console.WriteLine($"It's @AI: {player.Name} TURN!");
+            Menu.MenuDecorators("slashrt");
+            Menu.ComputerChoice();
+
+            switch (HashValue)                                          // the gesture type based on random choice
             {
-                case 1: gesture = gesturesGroup.gesturesType[0]; break; // rock
-                case 2: gesture = gesturesGroup.gesturesType[1]; break; // paper
-                case 3: gesture = gesturesGroup.gesturesType[2]; break; // scissors
-                case 4: gesture = gesturesGroup.gesturesType[3]; break; // lizard
-                case 5: gesture = gesturesGroup.gesturesType[4]; break; // spock
+                case 1: gesture = gesturesGroup.gesturesType[0]; break; // rock 0
+                case 2: gesture = gesturesGroup.gesturesType[1]; break; // paper 1
+                case 3: gesture = gesturesGroup.gesturesType[2]; break; // scissors 2
+                case 4: gesture = gesturesGroup.gesturesType[3]; break; // lizard 3
+                case 5: gesture = gesturesGroup.gesturesType[4]; break; // Mr. spock 4
                 default:
                     { Console.WriteLine("Please choose from the list"); break; }
             }
-            
+
             Menu.MenuDecorators("slashlf");
-                       
+
             return gesture;
         }
 
         private int AIrandomGen()
-        {
+        {   // Generates computer's AI
             Random = new Random();
-            int hash = Random.Next(1, 5);
+            int hash = Random.Next(1, 1000); //Scrambles the numbers a bit
+            hash = Random.Next(1, 5);
+            hash = Random.Next(1, 5);
+            hash = Random.Next(1, 5); // Best of three
             return hash;
-          
+
         }
     }
 }

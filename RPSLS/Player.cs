@@ -5,7 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RPSLS
-{
+{   
+    /// <summary>
+    /// This is the parent of the Computer and Human child classes
+    /// most variables and functions for them start here
+    /// </summary>
     public abstract class Player
     {
         //Member Variables
@@ -15,8 +19,7 @@ namespace RPSLS
         public int Score;
         public Menu Menu;
         public string gesture;
-
-
+        
         public GesturesGroup gesturesGroup;
         
         //CTOR??
@@ -27,7 +30,7 @@ namespace RPSLS
         }
 
         public virtual GestureType ChooseGesture(Player player)
-        {   //Run Logic here?
+        {   //Run Logic here? Nope this does zip!
             return null;
         }
 

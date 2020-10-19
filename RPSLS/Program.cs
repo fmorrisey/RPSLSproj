@@ -8,23 +8,23 @@ namespace RPSLS
 {
     class Program
     {
+        /// <summary>
+        /// Sunday October 18 2020
+        /// MVP Plus build
+        /// - Includes code clean up
+        /// - Emphasis of single responsibility
+        /// - Extensive Comments
+        /// </summary>
+        /// <param name="args"></param>
+        /// 
         static void Main(string[] args)
         {
-            //Conditionals for new game
-
-            //Vars for run Game
-            bool newGame = true;
-            bool playAgain = true;
-
-            //Initializes the menu
-            
-            
-            //Thu Oct 15 (Basic Run Game)
-            Menu menu = new Menu();
+            Menu menu = new Menu();     
             GameSpace game = new GameSpace();
-            game.StartGame();
-            game.MainMenu();
-            menu.Exit();
+
+            menu.DrawWelcome();         // Draws the fancy start menu with blinking graphics
+            game.InitializeMainMenu();  // The whole game starts here
+            menu.ExitMessageDraw();     // Draws the exits message
             
 
         }    
