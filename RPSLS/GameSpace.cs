@@ -11,13 +11,12 @@ namespace RPSLS
     /// GAMESPACE Class is the main run game logic after initialization
     /// in the program class. 
     /// </summary>
+    
     class GameSpace
     {   //MemberVariables       
         public Menu menu;
         public List<Player> Players;
-        public GesturesGroup GesturesGroup;
-        public Player player;
-
+                
         GestureType player01Gesture;
         GestureType player02Gesture;
 
@@ -26,7 +25,7 @@ namespace RPSLS
 
             menu = new Menu();                              // Creates the Menu
             Players = new List<Player>();                   // Creates the Player List
-            GesturesGroup = new GesturesGroup();
+            
 
         }    
 
@@ -88,8 +87,7 @@ namespace RPSLS
             Player player02 = null;
             bool askAgain = false;
             int playerSetupChoice;
-
-            
+                        
             menu.DrawPlayerSelection();
             
             do

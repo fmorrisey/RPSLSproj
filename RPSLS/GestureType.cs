@@ -18,8 +18,8 @@ namespace RPSLS
         
         public GestureType(string type, int value)
         {
-            this.Type = type;       //Name ex Lizard
-            this.Value = value;       //Name ex Lizard
+            this.Type = type;       // Name ex Lizard
+            this.Value = value;     // value attribute
         }
 
         

@@ -12,7 +12,7 @@ namespace RPSLS
     /// </summary>
     public class GesturesGroup
     {
-        public string name;
+        
         public List<GestureType> gesturesType;
 
         public GesturesGroup()

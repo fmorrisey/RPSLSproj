@@ -45,8 +45,8 @@ namespace RPSLS
 
         private int AIrandomGen()
         {   // Generates computer's AI
-            Random = new Random();
-            int hash = Random.Next(1, 1000); //Scrambles the numbers a bit
+            Random = new Random(Guid.NewGuid().GetHashCode());
+            int hash = 0; //Scrambles the numbers a bit
             hash = Random.Next(1, 5);
             hash = Random.Next(1, 5);
             hash = Random.Next(1, 5); // Best of three
