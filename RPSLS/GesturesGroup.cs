@@ -34,6 +34,11 @@ namespace RPSLS
             Lizard 3    poisons     Spock 4
             Spock 4     smashes     Scissors 2
             Scissors 2  decapitates Lizard 3
+            Lizard 3    eats        Paper 1
+            Paper 1     disproves   Spock 4 
+            Spock 4     vaporizes   Rock 0
+
+
             */
         }
     }

@@ -58,7 +58,7 @@ namespace RPSLS
             {
                 if (int.TryParse(Console.ReadLine(), out GestureSelection)) // If Integer 
                     if (GestureSelection >= 1 && GestureSelection <= 5)     // And Between Range
-                    { return GestureSelection; }                            // Return Selection                               
+                    { Menu.Clear();  return GestureSelection; }             // Hides selection and returns valid input                               
                     else { Console.WriteLine("Incorrect Input"); askAgain = true; }
                 else { Console.WriteLine("Incorrect Input"); askAgain = true; }
             } while (askAgain == true);
